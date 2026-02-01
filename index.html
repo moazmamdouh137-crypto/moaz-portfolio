@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="معاذ ممدوح - مطور ويب Front-End مبتدئ | HTML, CSS, JavaScript"/>
+  <title>معاذ ممدوح | Front-End Developer — From Mars</title>
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+
+  <style>
+    :root {
+      --bg: #05070f;
+      --text: #e0e7ff;
+      --primary: #6366f1;
+      --accent: #f472b6;
+      --card: rgba(15, 23, 42, 0.75);
+      --border: #334155;
+      --overlay: rgba(5, 7, 15, 0.68);
+    }
+
+    [data-theme="light"] {
+      --bg: #f8fafc;
+      --text: #1e293b;
+      --card: rgba(255,255,255,0.9);
+      --border: #cbd5e1;
+      --overlay: rgba(248,250,252,0.75);
+    }
+
+    * { margin:0; padding:0; box-sizing:border-box; }
+
+    body {
+      font-family: system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      transition: background 0.5s, color 0.5s;
+      scroll-behavior: smooth;
+    }
+
+    #bg-video {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      object-fit: cover;
+      z-index: -2;
+    }
+
+    .overlay {
+      position: fixed;
+      inset: 0;
+      background: var(--overlay);
+      backdrop-filter: blur(3px);
+      z-index: -1;
+      transition: background 0.5s;
+    }
+
+    .container { max-width: 1280px; margin: 0 auto; padding: 0 24px; position: relative; z-index: 2; }
+
+    header { padding: 180px 0 140px; text-align: center; }
+
+    .avatar-wrapper {
+      position: relative;
+      width: 280px;
+      height: 280px;
+      margin: 0 auto 50px;
+    }
+
+    .avatar {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 8px solid transparent;
+      background: linear-gradient(45deg, var(--primary), var(--accent)) border-box;
+      box-shadow: 0 0 100px rgba(99,102,241,0.7);
+      transition: all 0.6s ease;
+    }
+
+    .avatar-wrapper:hover .avatar {
+      transform: scale(1.18) rotate(12deg);
+      box-shadow: 0 0 160px rgba(244,114,182,0.8);
+    }
+
+    h1 {
+      font-size: 5.2rem;
+      background: linear-gradient(90deg, var(--primary), var(--accent), #a78bfa);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      margin-bottom: 20px;
+    }
+
+    .title { font-size: 2.3rem; color: var(--accent); text-shadow: 0 0 30px var(--accent); }
+
+    .bio { max-width: 900px; margin: 40px auto; font-size: 1.35rem; color: #d1d5db; }
+
+    .theme-toggle {
+      position: fixed;
+      top: 20px;
+      left: 20px;
+      z-index: 999;
+      background: rgba(255,255,255,0.15);
+      border: none;
+      color: white;
+      padding: 12px 20px;
+      border-radius: 50%;
+      cursor: pointer;
+      font-size: 1.4rem;
+      backdrop-filter: blur(10px);
+      box-shadow: 0 0 20px rgba(0,0,0,0.4);
+      transition: all 0.3s;
+    }
+
+    .theme-toggle:hover { transform: scale(1.15); }
+
+    section { padding: 140px 0; }
+
+    h2 {
+      font-size: 3.6rem;
+      text-align: center;
+      margin-bottom: 90px;
+      background: linear-gradient(90deg, var(--primary), var(--accent));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+      gap: 50px;
+    }
+
+    .card {
+      background: var(--card);
+      backdrop-filter: blur(14px);
+      border: 1px solid rgba(99,102,241,0.35);
+      border-radius: 24px;
+      padding: 45px;
+      transition: all 0.5s ease;
+      opacity: 0;
+      transform: translateY(100px);
+      animation: cardEntry 1.4s forwards;
+    }
+
+    @keyframes cardEntry { to { opacity: 1; transform: translateY(0); } }
+
+    .card:hover {
+      transform: translateY(-20px) scale(1.05);
+      border-color: var(--accent);
+      box-shadow: 0 40px 90px rgba(244,114,182,0.35);
+    }
+
+    .skill-icon { font-size: 4.8rem; margin-bottom: 24px; color: var(--accent); filter: drop-shadow(0 0 18px var(--accent)); }
+
+    .progress { height: 12px; background: rgba(99,102,241,0.25); border-radius: 6px; margin-top: 16px; overflow: hidden; }
+
+    .progress-bar {
+      height: 100%;
+      background: linear-gradient(90deg, var(--primary), var(--accent));
+      width: 0;
+      transition: width 2.2s ease;
+    }
+
+    .card:hover .progress-bar { width: 92%; }
+
+    .back-to-top {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      background: var(--primary);
+      color: white;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.4s;
+      box-shadow: 0 10px 30px rgba(99,102,241,0.4);
+    }
+
+    .back-to-top.show { opacity: 1; visibility: visible; }
+
+    footer {
+      text-align: center;
+      padding: 100px 20px;
+      color: #94a3b8;
+      border-top: 1px solid rgba(99,102,241,0.25);
+    }
+
+    .social-links a {
+      font-size: 2.2rem;
+      margin: 0 20px;
+      color: var(--text);
+      transition: all 0.3s;
+    }
+
+    .social-links a:hover { color: var(--accent); transform: translateY(-6px); text-shadow: 0 0 20px var(--accent); }
+  </style>
+</head>
+<body>
+
+<video id="bg-video" autoplay muted loop playsinline>
+  <source src="space-bg.mp4" type="video/mp4">
+  المتصفح لا يدعم الفيديو.
+</video>
+
+<div class="overlay"></div>
+
+<button class="theme-toggle" id="themeBtn"><i class="fas fa-moon"></i></button>
+
+<header>
+  <div class="container">
+    <div class="avatar-wrapper">
+      <img src="moaz.jpg" alt="معاذ ممدوح" class="avatar"/>
+    </div>
+
+    <h1>معاذ ممدوح</h1>
+    <div class="title">Front-End Developer — Coding in Deep Space</div>
+
+    <p class="bio">
+      مطور ويب مبتدئ عايش في الفضاء الرقمي... أحب أبني مواقع نظيفة وسريعة بـ HTML + CSS + JavaScript.<br>
+      كل يوم أكتشف حاجة جديدة، وهدفي أوصل لمستوى احترافي وأشتغل فريلانسر من المريخ.
+    </p>
+  </div>
+</header>
+
+<section id="skills">
+  <div class="container">
+    <h2>المهارات (Level Up in Space)</h2>
+    <div class="grid">
+      <div class="card">
+        <div class="skill-icon"><i class="fab fa-html5"></i></div>
+        <h3>HTML5</h3>
+        <div class="progress"><div class="progress-bar"></div></div>
+      </div>
+      <div class="card">
+        <div class="skill-icon"><i class="fab fa-css3-alt"></i></div>
+        <h3>CSS3 + Animations</h3>
+        <div class="progress"><div class="progress-bar"></div></div>
+      </div>
+      <div class="card">
+        <div class="skill-icon"><i class="fab fa-js"></i></div>
+        <h3>JavaScript Basics</h3>
+        <div class="progress"><div class="progress-bar"></div></div>
+      </div>
+      <div class="card">
+        <div class="skill-icon"><i class="fas fa-mobile-alt"></i></div>
+        <h3>Responsive Design</h3>
+        <div class="progress"><div class="progress-bar"></div></div>
+      </div>
+      <div class="card">
+        <div class="skill-icon"><i class="fab fa-git-alt"></i></div>
+        <h3>Git & GitHub</h3>
+        <div class="progress"><div class="progress-bar"></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="projects" style="background:rgba(5,7,15,0.4);">
+  <div class="container">
+    <h2>المشاريع (Space Missions)</h2>
+    <div class="grid">
+      <div class="card">
+        <h3 class="project-title">بورتفوليو المريخ</h3>
+        <p>الموقع ده بالذات – نسخة فضائية كاملة</p>
+        <div style="margin:20px 0;">
+          <span style="background:rgba(99,102,241,0.2); color:var(--primary); padding:8px 16px; border-radius:20px; margin:0 8px;">HTML</span>
+          <span style="background:rgba(244,114,182,0.2); color:var(--accent); padding:8px 16px; border-radius:20px;">CSS</span>
+        </div>
+      </div>
+      <!-- باقي المشاريع كما هي -->
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="social-links" style="margin-bottom:30px;">
+      <a href="https://github.com/YOUR_USERNAME" target="_blank"><i class="fab fa-github"></i></a>
+      <a href="https://wa.me/201220025720" target="_blank"><i class="fab fa-whatsapp"></i></a>
+      <a href="mailto:moazmamdouh137@gmail.com"><i class="fas fa-envelope"></i></a>
+    </div>
+
+    <p style="font-size:1.2rem;">
+      © <span id="year"></span> معاذ ممدوح – Front-End Developer<br>
+      <span style="opacity:0.8;">Built with passion on planet Earth → Deployed to Mars</span>
+    </p>
+
+    <a href="#" id="backToTop" class="back-to-top"><i class="fas fa-rocket"></i></a>
+  </div>
+</footer>
+
+<button id="cvBtn" style="
+  position: fixed;
+  bottom: 100px;
+  right: 30px;
+  background: linear-gradient(45deg, var(--primary), var(--accent));
+  color: white;
+  border: none;
+  padding: 14px 28px;
+  border-radius: 50px;
+  cursor: pointer;
+  font-weight: bold;
+  box-shadow: 0 10px 30px rgba(99,102,241,0.5);
+  z-index: 999;
+  transition: all 0.3s;
+">تحميل CV</button>
+
+<script>
+  // Theme Toggle
+  const themeBtn = document.getElementById('themeBtn');
+  themeBtn.addEventListener('click', () => {
+    document.body.dataset.theme = document.body.dataset.theme === 'light' ? '' : 'light';
+    themeBtn.innerHTML = document.body.dataset.theme === 'light' ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
+  });
+
+  // Back to top
+  const backToTop = document.getElementById('backToTop');
+  window.addEventListener('scroll', () => {
+    backToTop.classList.toggle('show', window.scrollY > 400);
+  });
+  backToTop.addEventListener('click', (e) => {
+    e.preventDefault();
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+
+  // Year
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  // CV button (placeholder)
+  document.getElementById('cvBtn').addEventListener('click', () => {
+    alert('الـ CV جاهز قريبًا! حاليًا تحت الإعداد 🚀');
+    // لو عندك ملف CV.pdf فعليًا → window.open('cv.pdf', '_blank');
+  });
+</script>
+
+</body>
+</html>
