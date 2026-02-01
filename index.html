@@ -3,67 +3,52 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <meta name="description" content="معاذ ممدوح - مطور ويب Front-End مبتدئ | HTML, CSS, JavaScript"/>
-  <title>معاذ ممدوح | Front-End Developer — From Mars</title>
+  <meta name="description" content="معاذ ممدوح - مطور واجهات أمامية | Front-End Developer من الإسكندرية"/>
+  <title>معاذ ممدوح | Front-End Web Developer</title>
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
 
   <style>
     :root {
-      --bg: #05070f;
-      --text: #e0e7ff;
-      --primary: #6366f1;
-      --accent: #f472b6;
-      --card: rgba(15, 23, 42, 0.75);
-      --border: #334155;
-      --overlay: rgba(5, 7, 15, 0.68);
-    }
-
-    [data-theme="light"] {
-      --bg: #f8fafc;
-      --text: #1e293b;
-      --card: rgba(255,255,255,0.9);
-      --border: #cbd5e1;
-      --overlay: rgba(248,250,252,0.75);
+      --bg: #0a0e17;
+      --surface: #111827;
+      --text: #e2e8f0;
+      --text-light: #cbd5e1;
+      --primary: #3b82f6;
+      --primary-dark: #2563eb;
+      --accent: #facc15;
+      --border: #1e293b;
+      --card: rgba(15, 23, 42, 0.78);
+      --shadow: 0 10px 25px rgba(0,0,0,0.25);
+      --transition: all 0.4s ease;
     }
 
     * { margin:0; padding:0; box-sizing:border-box; }
 
     body {
-      font-family: system-ui, sans-serif;
+      font-family: system-ui, -apple-system, sans-serif;
       background: var(--bg);
       color: var(--text);
+      line-height: 1.6;
       min-height: 100vh;
-      transition: background 0.5s, color 0.5s;
-      scroll-behavior: smooth;
     }
 
-    #bg-video {
-      position: fixed;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      object-fit: cover;
-      z-index: -2;
+    .container {
+      max-width: 1240px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
     }
 
-    .overlay {
-      position: fixed;
-      inset: 0;
-      background: var(--overlay);
-      backdrop-filter: blur(3px);
-      z-index: -1;
-      transition: background 0.5s;
+    header {
+      padding: 12rem 0 7rem;
+      text-align: center;
     }
-
-    .container { max-width: 1280px; margin: 0 auto; padding: 0 24px; position: relative; z-index: 2; }
-
-    header { padding: 180px 0 140px; text-align: center; }
 
     .avatar-wrapper {
+      width: 260px;
+      height: 260px;
+      margin: 0 auto 2.5rem;
       position: relative;
-      width: 280px;
-      height: 280px;
-      margin: 0 auto 50px;
     }
 
     .avatar {
@@ -71,55 +56,45 @@
       height: 100%;
       border-radius: 50%;
       object-fit: cover;
-      border: 8px solid transparent;
+      border: 5px solid transparent;
       background: linear-gradient(45deg, var(--primary), var(--accent)) border-box;
-      box-shadow: 0 0 100px rgba(99,102,241,0.7);
-      transition: all 0.6s ease;
+      box-shadow: 0 0 60px rgba(59,130,246,0.35);
+      transition: var(--transition);
     }
 
     .avatar-wrapper:hover .avatar {
-      transform: scale(1.18) rotate(12deg);
-      box-shadow: 0 0 160px rgba(244,114,182,0.8);
+      transform: scale(1.07);
+      box-shadow: 0 0 100px rgba(250,204,21,0.45);
     }
 
     h1 {
-      font-size: 5.2rem;
-      background: linear-gradient(90deg, var(--primary), var(--accent), #a78bfa);
+      font-size: clamp(3rem, 9vw, 5rem);
+      background: linear-gradient(90deg, var(--primary), var(--accent));
       -webkit-background-clip: text;
       background-clip: text;
       color: transparent;
-      margin-bottom: 20px;
+      margin-bottom: 0.8rem;
     }
 
-    .title { font-size: 2.3rem; color: var(--accent); text-shadow: 0 0 30px var(--accent); }
-
-    .bio { max-width: 900px; margin: 40px auto; font-size: 1.35rem; color: #d1d5db; }
-
-    .theme-toggle {
-      position: fixed;
-      top: 20px;
-      left: 20px;
-      z-index: 999;
-      background: rgba(255,255,255,0.15);
-      border: none;
-      color: white;
-      padding: 12px 20px;
-      border-radius: 50%;
-      cursor: pointer;
-      font-size: 1.4rem;
-      backdrop-filter: blur(10px);
-      box-shadow: 0 0 20px rgba(0,0,0,0.4);
-      transition: all 0.3s;
+    .subtitle {
+      font-size: 1.9rem;
+      color: var(--accent);
+      margin-bottom: 1.8rem;
     }
 
-    .theme-toggle:hover { transform: scale(1.15); }
+    .bio {
+      max-width: 760px;
+      margin: 0 auto 2.5rem;
+      font-size: 1.22rem;
+      color: var(--text-light);
+    }
 
-    section { padding: 140px 0; }
+    section { padding: 9rem 0; }
 
     h2 {
-      font-size: 3.6rem;
+      font-size: clamp(2.4rem, 7vw, 3.6rem);
       text-align: center;
-      margin-bottom: 90px;
+      margin-bottom: 4.5rem;
       background: linear-gradient(90deg, var(--primary), var(--accent));
       -webkit-background-clip: text;
       background-clip: text;
@@ -128,217 +103,313 @@
 
     .grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
-      gap: 50px;
+      grid-template-columns: repeat(auto-fit, minmax(310px, 1fr));
+      gap: 2.2rem;
     }
 
     .card {
       background: var(--card);
-      backdrop-filter: blur(14px);
-      border: 1px solid rgba(99,102,241,0.35);
-      border-radius: 24px;
-      padding: 45px;
-      transition: all 0.5s ease;
+      border: 1px solid var(--border);
+      border-radius: 1.2rem;
+      padding: 2.2rem;
+      backdrop-filter: blur(10px);
+      transition: var(--transition);
       opacity: 0;
-      transform: translateY(100px);
-      animation: cardEntry 1.4s forwards;
+      transform: translateY(35px);
     }
 
-    @keyframes cardEntry { to { opacity: 1; transform: translateY(0); } }
+    .card.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
 
     .card:hover {
-      transform: translateY(-20px) scale(1.05);
+      transform: translateY(-10px);
       border-color: var(--accent);
-      box-shadow: 0 40px 90px rgba(244,114,182,0.35);
+      box-shadow: var(--shadow);
     }
 
-    .skill-icon { font-size: 4.8rem; margin-bottom: 24px; color: var(--accent); filter: drop-shadow(0 0 18px var(--accent)); }
+    .skill-icon {
+      font-size: 3.6rem;
+      margin-bottom: 1.1rem;
+      color: var(--accent);
+    }
 
-    .progress { height: 12px; background: rgba(99,102,241,0.25); border-radius: 6px; margin-top: 16px; overflow: hidden; }
+    .progress {
+      height: 9px;
+      background: rgba(59,130,246,0.18);
+      border-radius: 999px;
+      margin-top: 1rem;
+      overflow: hidden;
+    }
 
     .progress-bar {
       height: 100%;
       background: linear-gradient(90deg, var(--primary), var(--accent));
       width: 0;
-      transition: width 2.2s ease;
+      transition: width 1.6s ease-out;
     }
 
-    .card:hover .progress-bar { width: 92%; }
+    .card.visible .progress-bar {
+      width: var(--progress, 70%);
+    }
 
-    .back-to-top {
-      position: fixed;
-      bottom: 30px;
-      right: 30px;
-      background: var(--primary);
-      color: white;
-      width: 50px;
-      height: 50px;
-      border-radius: 50%;
+    .project-img-wrapper {
+      height: 210px;
+      overflow: hidden;
+      border-radius: 1rem;
+      margin-bottom: 1.4rem;
+    }
+
+    .project-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.6s ease;
+    }
+
+    .card:hover .project-img {
+      transform: scale(1.09);
+    }
+
+    .tags {
       display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      opacity: 0;
-      visibility: hidden;
-      transition: all 0.4s;
-      box-shadow: 0 10px 30px rgba(99,102,241,0.4);
+      flex-wrap: wrap;
+      gap: 0.7rem;
+      margin: 1rem 0;
     }
 
-    .back-to-top.show { opacity: 1; visibility: visible; }
+    .tags span {
+      background: rgba(59,130,246,0.14);
+      color: var(--primary);
+      padding: 0.35rem 0.9rem;
+      border-radius: 999px;
+      font-size: 0.92rem;
+    }
+
+    .btn {
+      padding: 0.7rem 1.4rem;
+      border-radius: 999px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: var(--transition);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .btn-primary {
+      background: linear-gradient(45deg, var(--primary), var(--accent));
+      color: white;
+    }
+
+    .btn-outline {
+      border: 1.5px solid var(--primary);
+      color: var(--primary);
+    }
+
+    .btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(59,130,246,0.25);
+    }
+
+    .contact-card {
+      text-align: center;
+    }
+
+    .contact-icon {
+      font-size: 3.4rem;
+      color: var(--accent);
+      margin-bottom: 1.2rem;
+    }
+
+    .contact-card a {
+      color: var(--text);
+      font-size: 1.15rem;
+      text-decoration: none;
+    }
+
+    .contact-card a:hover {
+      color: var(--accent);
+    }
 
     footer {
+      padding: 5rem 0 3rem;
       text-align: center;
-      padding: 100px 20px;
-      color: #94a3b8;
-      border-top: 1px solid rgba(99,102,241,0.25);
+      border-top: 1px solid var(--border);
     }
 
     .social-links a {
-      font-size: 2.2rem;
-      margin: 0 20px;
-      color: var(--text);
-      transition: all 0.3s;
+      font-size: 1.9rem;
+      margin: 0 1.1rem;
+      color: var(--text-light);
+      transition: var(--transition);
     }
 
-    .social-links a:hover { color: var(--accent); transform: translateY(-6px); text-shadow: 0 0 20px var(--accent); }
+    .social-links a:hover {
+      color: var(--accent);
+      transform: translateY(-4px);
+    }
+
+    @media (max-width: 768px) {
+      header { padding: 9rem 0 5rem; }
+      h1 { font-size: 3.2rem; }
+      .avatar-wrapper { width: 210px; height: 210px; }
+      .grid { gap: 1.8rem; }
+      section { padding: 6rem 0; }
+    }
   </style>
 </head>
 <body>
 
-<video id="bg-video" autoplay muted loop playsinline>
-  <source src="space-bg.mp4" type="video/mp4">
-  المتصفح لا يدعم الفيديو.
-</video>
-
-<div class="overlay"></div>
-
-<button class="theme-toggle" id="themeBtn"><i class="fas fa-moon"></i></button>
-
-<header>
-  <div class="container">
-    <div class="avatar-wrapper">
-      <img src="moaz.jpg" alt="معاذ ممدوح" class="avatar"/>
-    </div>
-
-    <h1>معاذ ممدوح</h1>
-    <div class="title">Front-End Developer — Coding in Deep Space</div>
-
-    <p class="bio">
-      مطور ويب مبتدئ عايش في الفضاء الرقمي... أحب أبني مواقع نظيفة وسريعة بـ HTML + CSS + JavaScript.<br>
-      كل يوم أكتشف حاجة جديدة، وهدفي أوصل لمستوى احترافي وأشتغل فريلانسر من المريخ.
-    </p>
+<header class="container">
+  <div class="avatar-wrapper">
+    <img src="moaz-profile.jpeg" alt="معاذ ممدوح" class="avatar">
   </div>
+  <h1>معاذ ممدوح</h1>
+  <div class="subtitle">Front-End Web Developer</div>
+  <p class="bio">
+    مبرمج واجهات أمامية شغوف ببناء مواقع حديثة وسريعة الاستجابة.<br>
+    أتعلم حالياً JavaScript الحديث و React و Tailwind CSS.<br>
+    مرحباً بك في مساحتي الرقمية — تفضل تتصفح وتتواصل.
+  </p>
 </header>
 
-<section id="skills">
-  <div class="container">
-    <h2>المهارات (Level Up in Space)</h2>
-    <div class="grid">
-      <div class="card">
-        <div class="skill-icon"><i class="fab fa-html5"></i></div>
-        <h3>HTML5</h3>
-        <div class="progress"><div class="progress-bar"></div></div>
-      </div>
-      <div class="card">
-        <div class="skill-icon"><i class="fab fa-css3-alt"></i></div>
-        <h3>CSS3 + Animations</h3>
-        <div class="progress"><div class="progress-bar"></div></div>
-      </div>
-      <div class="card">
-        <div class="skill-icon"><i class="fab fa-js"></i></div>
-        <h3>JavaScript Basics</h3>
-        <div class="progress"><div class="progress-bar"></div></div>
-      </div>
-      <div class="card">
-        <div class="skill-icon"><i class="fas fa-mobile-alt"></i></div>
-        <h3>Responsive Design</h3>
-        <div class="progress"><div class="progress-bar"></div></div>
-      </div>
-      <div class="card">
-        <div class="skill-icon"><i class="fab fa-git-alt"></i></div>
-        <h3>Git & GitHub</h3>
-        <div class="progress"><div class="progress-bar"></div></div>
-      </div>
+<section id="skills" class="container">
+  <h2>المهارات</h2>
+  <div class="grid">
+
+    <div class="card" style="--progress: 95%">
+      <div class="skill-icon"><i class="fab fa-html5"></i></div>
+      <h3>HTML5</h3>
+      <div class="progress"><div class="progress-bar"></div></div>
     </div>
+
+    <div class="card" style="--progress: 85%">
+      <div class="skill-icon"><i class="fab fa-css3-alt"></i></div>
+      <h3>CSS3 + Tailwind</h3>
+      <div class="progress"><div class="progress-bar"></div></div>
+    </div>
+
+    <div class="card" style="--progress: 70%">
+      <div class="skill-icon"><i class="fab fa-js"></i></div>
+      <h3>JavaScript</h3>
+      <div class="progress"><div class="progress-bar"></div></div>
+    </div>
+
+    <div class="card" style="--progress: 45%">
+      <div class="skill-icon"><i class="fab fa-react"></i></div>
+      <h3>React</h3>
+      <div class="progress"><div class="progress-bar"></div></div>
+    </div>
+
+    <div class="card" style="--progress: 80%">
+      <div class="skill-icon"><i class="fab fa-git-alt"></i></div>
+      <h3>Git & GitHub</h3>
+      <div class="progress"><div class="progress-bar"></div></div>
+    </div>
+
+    <div class="card" style="--progress: 75%">
+      <div class="skill-icon"><i class="fas fa-palette"></i></div>
+      <h3>Figma</h3>
+      <div class="progress"><div class="progress-bar"></div></div>
+    </div>
+
+    <div class="card" style="--progress: 92%">
+      <div class="skill-icon"><i class="fab fa-microsoft"></i></div>
+      <h3>Microsoft Word</h3>
+      <div class="progress"><div class="progress-bar"></div></div>
+    </div>
+
+    <div class="card" style="--progress: 85%">
+      <div class="skill-icon"><i class="fas fa-keyboard"></i></div>
+      <h3>الكتابة السريعة</h3>
+      <div class="progress"><div class="progress-bar"></div></div>
+    </div>
+
+    <div class="card" style="--progress: 95%">
+      <div class="skill-icon"><i class="fas fa-desktop"></i></div>
+      <h3>مهارات الحاسوب الأساسية</h3>
+      <div class="progress"><div class="progress-bar"></div></div>
+    </div>
+
   </div>
 </section>
 
-<section id="projects" style="background:rgba(5,7,15,0.4);">
-  <div class="container">
-    <h2>المشاريع (Space Missions)</h2>
-    <div class="grid">
-      <div class="card">
-        <h3 class="project-title">بورتفوليو المريخ</h3>
-        <p>الموقع ده بالذات – نسخة فضائية كاملة</p>
-        <div style="margin:20px 0;">
-          <span style="background:rgba(99,102,241,0.2); color:var(--primary); padding:8px 16px; border-radius:20px; margin:0 8px;">HTML</span>
-          <span style="background:rgba(244,114,182,0.2); color:var(--accent); padding:8px 16px; border-radius:20px;">CSS</span>
-        </div>
+<section id="projects" class="container">
+  <h2>المشاريع</h2>
+  <div class="grid">
+
+    <div class="card">
+      <div class="project-img-wrapper">
+        <img src="todo-app.jpg" alt="Todo App" class="project-img">
       </div>
-      <!-- باقي المشاريع كما هي -->
+      <h3>Todo App Space</h3>
+      <p>تطبيق مهام بسيط مع dark mode وحفظ محلي</p>
+      <div class="tags">
+        <span>HTML</span><span>CSS</span><span>JavaScript</span>
+      </div>
+      <div style="margin-top:1.4rem;">
+        <a href="#" class="btn btn-primary">عرض المشروع</a>
+        <a href="#" class="btn btn-outline" style="margin-right:0.6rem;">GitHub</a>
+      </div>
     </div>
+
+    <!-- كرر الـ card أعلاه لكل مشروع إضافي -->
+
   </div>
 </section>
 
-<footer>
-  <div class="container">
-    <div class="social-links" style="margin-bottom:30px;">
-      <a href="https://github.com/YOUR_USERNAME" target="_blank"><i class="fab fa-github"></i></a>
-      <a href="https://wa.me/201220025720" target="_blank"><i class="fab fa-whatsapp"></i></a>
-      <a href="mailto:moazmamdouh137@gmail.com"><i class="fas fa-envelope"></i></a>
+<section id="contact" class="container">
+  <h2>تواصل معايا</h2>
+  <div class="grid">
+
+    <div class="card contact-card">
+      <div class="contact-icon"><i class="fas fa-phone-volume"></i></div>
+      <h3>اتصل</h3>
+      <a href="tel:+201220025720">01220025720</a>
     </div>
 
-    <p style="font-size:1.2rem;">
-      © <span id="year"></span> معاذ ممدوح – Front-End Developer<br>
-      <span style="opacity:0.8;">Built with passion on planet Earth → Deployed to Mars</span>
-    </p>
+    <div class="card contact-card">
+      <div class="contact-icon"><i class="fab fa-whatsapp"></i></div>
+      <h3>واتساب</h3>
+      <a href="https://wa.me/201220025720" target="_blank">01220025720 (واتساب)</a>
+    </div>
 
-    <a href="#" id="backToTop" class="back-to-top"><i class="fas fa-rocket"></i></a>
+    <div class="card contact-card">
+      <div class="contact-icon"><i class="fas fa-envelope"></i></div>
+      <h3>البريد الإلكتروني</h3>
+      <a href="mailto:moazmamdouh137@gmail.com">moazmamdouh137@gmail.com</a>
+    </div>
+
   </div>
+</section>
+
+<footer class="container">
+  <div class="social-links">
+    <a href="https://github.com/YOUR_USERNAME" target="_blank"><i class="fab fa-github"></i></a>
+    <a href="https://wa.me/201220025720" target="_blank"><i class="fab fa-whatsapp"></i></a>
+    <a href="mailto:moazmamdouh137@gmail.com"><i class="fas fa-envelope"></i></a>
+  </div>
+  <p style="margin-top:2.5rem; opacity:0.75;">
+    © <span id="year"></span> معاذ ممدوح — Alexandria, Egypt
+  </p>
 </footer>
 
-<button id="cvBtn" style="
-  position: fixed;
-  bottom: 100px;
-  right: 30px;
-  background: linear-gradient(45deg, var(--primary), var(--accent));
-  color: white;
-  border: none;
-  padding: 14px 28px;
-  border-radius: 50px;
-  cursor: pointer;
-  font-weight: bold;
-  box-shadow: 0 10px 30px rgba(99,102,241,0.5);
-  z-index: 999;
-  transition: all 0.3s;
-">تحميل CV</button>
-
 <script>
-  // Theme Toggle
-  const themeBtn = document.getElementById('themeBtn');
-  themeBtn.addEventListener('click', () => {
-    document.body.dataset.theme = document.body.dataset.theme === 'light' ? '' : 'light';
-    themeBtn.innerHTML = document.body.dataset.theme === 'light' ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
-  });
+  // ظهور الكروت تدريجياً عند التمرير
+  const cards = document.querySelectorAll('.card');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.12 });
 
-  // Back to top
-  const backToTop = document.getElementById('backToTop');
-  window.addEventListener('scroll', () => {
-    backToTop.classList.toggle('show', window.scrollY > 400);
-  });
-  backToTop.addEventListener('click', (e) => {
-    e.preventDefault();
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  });
+  cards.forEach(card => observer.observe(card));
 
-  // Year
   document.getElementById('year').textContent = new Date().getFullYear();
-
-  // CV button (placeholder)
-  document.getElementById('cvBtn').addEventListener('click', () => {
-    alert('الـ CV جاهز قريبًا! حاليًا تحت الإعداد 🚀');
-    // لو عندك ملف CV.pdf فعليًا → window.open('cv.pdf', '_blank');
-  });
 </script>
 
 </body>
